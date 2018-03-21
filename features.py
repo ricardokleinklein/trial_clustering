@@ -53,14 +53,17 @@ class autoencoder(nn.Module):
 
 	def forward(self, x):
 		x = self.input(x)
+		h = F.relu(x)
 		x = F.relu(x)
 		x = self.hidden(x)
 		x = F.relu(x)
-		return x
+		return x, h
 
 
-def run_autoencoder(X, net, hparams, dst_dir):
-	filename = os.path.join(dst_dir, 'encoder_%s_neurons.csv')
+def train_autoencoder(X, net, hparams, dst_dir):
+	if not os.path.exists(dst_dir):
+		os.mkdir(dst_dir)
+	filename = os.path.join(dst_dir, 'encoder_%s_neurons.pth' % hparams.hidden_size)
 	criterion = nn.MSELoss()
 	optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 	X = netDataset(X)
@@ -79,17 +82,27 @@ def run_autoencoder(X, net, hparams, dst_dir):
 			# zero the parameter gradients
 			optimizer.zero_grad()
 			# forward + backward + optimize
-			outputs = net(inputs)
+			outputs, _  = net(inputs)
 			loss = criterion(outputs, labels)
 			loss.backward()
 			optimizer.step()
 			# printing stats
 			running_loss += loss.data[0]
-			if i % 10000 == 9999:
+			if i % 100 == 99:
 				print('[%d, %5d] loss: %.3f' %
 					(epoch + 1, i + 1, running_loss / 10000))
 				running_loss = 0.0
+				
 	print('Finished training. Saving encoder features in %s' % filename)
+	torch.save(net.state_dict(), filename)
+
+def apply_encoding(X, hparams, dst_dir):
+	filename = os.path.join(dst_dir, 'encoder_%s_neurons.pth' % hparams.hidden_size)
+	net = autoencoder(hparams.n_atts, hparams.hidden_size)
+	X = Variable(torch.from_numpy(X)).type(torch.FloatTensor)
+	print('Loading model from %s' % filename)
+	net.load_state_dict(torch.load(filename))
+	return net(X)[1]
 
 
 def run_pca(X, hparams):
