@@ -5,6 +5,7 @@ from __future__ import absolute_import
 
 import numpy as np
 import pandas as pd
+from scipy.stats import pearsonr
 
 from sklearn import preprocessing as P
 
@@ -60,6 +61,17 @@ def find_outliers(data, n_atts):
 
 def normalize(data):
 	return P.scale(data)			
+
+
+def correlation_table(data, n_atts):
+	table = list()
+	for att in range(n_atts):
+		table_att = list()
+		for att_cmp in range(n_atts):
+			p, _ = pearsonr(data[:,att], data[:,att_cmp])
+			table_att.append(p)
+		table.append(table_att)
+	return np.array(table)
 
 
 def plot_1d_att(data, att, save=False):

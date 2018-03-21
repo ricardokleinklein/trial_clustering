@@ -28,7 +28,7 @@ from hparams import hparams
 
 
 def writedata(X, filename):
-	np.savetxt(filename, X)
+	np.savetxt(filename, X, fmt='%.3f')
 
 class netDataset(Dataset):
 	"""Pytorch accesible dataset."""
