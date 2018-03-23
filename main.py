@@ -22,12 +22,14 @@ from mpl_toolkits.mplot3d import Axes3D
 
 from preprocessing import *
 from features import *
+from clustering import *
 
 from hparams import hparams
 
 
 def get_hparams(hparams):
 	return namedtuple('hparams',hparams.keys())(*hparams.values())
+
 
 if __name__ == "__main__":
 	args = docopt(__doc__)
@@ -37,8 +39,4 @@ if __name__ == "__main__":
 	hparams = get_hparams(hparams)
 
 	data = load_data(data_dir)
-	data = normalize(data)
-
-	
-	
-
+	X = normalize(data)

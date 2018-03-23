@@ -96,6 +96,7 @@ def train_autoencoder(X, net, hparams, dst_dir):
 	print('Finished training. Saving encoder features in %s' % filename)
 	torch.save(net.state_dict(), filename)
 
+
 def apply_encoding(X, hparams, dst_dir):
 	filename = os.path.join(dst_dir, 'encoder_%s_neurons.pth' % hparams.hidden_size)
 	net = autoencoder(hparams.n_atts, hparams.hidden_size)
@@ -127,15 +128,7 @@ def scatter3d(X, pca=None):
 	if pca is not None:
 		pass
 	plt.show()
-
-
-def run_lda(X, hparams):
-	# lda = LDA(n_components=hparams.pca_dims)
-	# lda.fit(X)
-	# X_p = lda.transform(X)
-	# return X_p
-	raise NotImplementedError
-
+	
 
 def run_ica(X, hparams):
 	ica = FastICA(hparams.pca_dims)
