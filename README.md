@@ -15,3 +15,30 @@ This repository is but a proof-of-concept for some clustering ideas with enphasi
 - pytorch >= 0.3.1
 - pandas >= 0.22.0
 - scikit-learn >= 0.19.1
+
+## Steps followed
+
+There are five main phases followed for this project. Rather than actually meaningful results, which would be hard to get due to the limited domain expertise available, the pipeline will be more process-oriented, i.e., the steps will be those that would normally try at a first attempt to any data mining challenge. Thus, those phases are: 
+* Loading and cleansing of the data
+* General features/properties of data
+* Preprocessing of the data - Dimensionality reduction
+* Clustering
+* Analysis of results
+
+### Load and clean data
+
+Packages used to load data and convert them into an easy dealt-with array are Pandas and Numpy. 
+Simple process, it checks whether the dataset exists, if it contains any missing values and whether or not there are duplicate samples (two rows with the exact same attribute values).
+
+The outcome of this step is an array of $$100000 \times 15$$ elements. 
+
+- No missing values
+- Not duplicated samples found
+
+For these checkings I have relied on Pandas' implemented routines as trustworthy.
+
+
+
+
+
+
