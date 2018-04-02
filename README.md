@@ -30,7 +30,7 @@ There are five main phases followed for this project. Rather than actually meani
 Packages used to load data and convert them into an easy dealt-with array are Pandas and Numpy. 
 Simple process, it checks whether the dataset exists, if it contains any missing values and whether or not there are duplicate samples (two rows with the exact same attribute values).
 
-The outcome of this step is an array of $$100000 \times 15$$ elements. 
+The outcome of this step is an array of $100000 \times 15$ elements. 
 
 - No missing values
 - Not duplicated samples found
