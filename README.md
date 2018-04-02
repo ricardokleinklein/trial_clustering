@@ -64,6 +64,7 @@ To that aim, we perform two different algorithms over data: PCA analysis and ICA
 - A shape that resembles that of a heart appears in both the 2 and 3 main components. That indicates a continuity in the data, so most likely no independent clustering will be possible, at least in visualizable spaces.
 
 - *ICA* yields a dimensionality space in which particularly dominant attributes would dominate. It is applied here with some caution, cause it's not an algorithm suited for gaussian distributed data, but the attributes, with some exceptions, does not appear to be highly correlated, so in order to get some insight I run it nonetheless.
+
 ![ICA in 2d and 3d](/images/ica.png)
 
 - A hearted-shape distribution is observed. It is a bit different from the one found with PCA, though, and poses some interesting features: it can be seen a couple of tails, a bulk, and some minor bulks. 
@@ -79,6 +80,7 @@ Because of the surveying aim of this project, I am running two simple but powerf
 - This clustering doesn't seem to provide any relevant clustering, though it identifies some regions like the main bulk and the tails in different clusters, with just 8 labels.
 - GMM: based on probabilistic distributions, assuming the data follow a gaussian distribution, which I have assumed is accurate enough.
 - The clustering is similar to that obtained with K-Means. However, GMM tend to assign the same label to a larger amount of points. This yields a distribution in which some labels group the most of the samples in the dataset, leaving some other groups with almost no elements, or at least far fewer elements.
+![different clusterings](/images/clusters.png)
 
 
 
