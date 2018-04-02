@@ -37,6 +37,14 @@ The outcome of this step is an array of $100000 \times 15$ elements.
 
 For these checkings I have relied on Pandas' implemented routines as trustworthy.
 
+### Preprocessing
+
+In order to better understand the data, and how the different attributes can be related between themselves, I run a series of experiments that try to check what's the distribution of each attribute.
+- Presence of outliers: No outliers found in any sample. The method used is the interquartile method, considering the 25% and 75% of the data. Thus, all the sample shall be considered.
+- Given that the attributes have no outliers, but their relative sizes are quite different in orders of magnitud, I proceed to normalize all attributes' values to have mean 0 and standard deviation 1 so any learning algorithm will not be skewed because of this.
+- I proceed to obtain a correlation table for every pair of attributes. The index used to establish the correlation between attributes is the *Pearson coefficient*.
+![correlation table of attributes](../exp/correlation_table.png)
+
 
 
 
