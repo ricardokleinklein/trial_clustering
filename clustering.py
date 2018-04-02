@@ -30,14 +30,8 @@ def measure_silhouette(labels):
 	raise NotImplementedError
 
 
-def measure_N(labels):
-	count = dict()
-	for i in labels:
-		if i not in count:
-			count[i] = 1
-		else:
-			count[i] += 1
-	return count
+def get_char(labels):
+	return [chr(97 + l) for l in labels]
 
 
 

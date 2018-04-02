@@ -82,10 +82,10 @@ Because of the surveying aim of this project, I am running two simple but powerf
 - The clustering is similar to that obtained with K-Means. However, GMM tend to assign the same label to a larger amount of points. This yields a distribution in which some labels group the most of the samples in the dataset, leaving some other groups with almost no elements, or at least far fewer elements.
 ![different clusterings](/images/clusters.png)
 
+### 5. Analysis of results
 
+Without a particular feature of interest presented, or reference system to which compare the clustering obtained, we can but venture to assume that a given clustering fills our purposes. To evaluate the correlation in importance of the different clusters, we could focus on the size of every cluster (understood as the amount of samples labeled within a particular class).
 
+- A better evaluation on the closeness of the clusters would be to compute the Silhouette Score for the clusters, but that would be computationally expensive and, given that the clustering is performed in 3D so we can visualize the results, it woudln't be as expressive as it could be in other environments.
 
-
-
-
-
+Thus, the final outcome of our pipeline is a file `results.csv` that contains the samples of the dataset with its corresponding label in Unicode characters.

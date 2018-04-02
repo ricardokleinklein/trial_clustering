@@ -46,8 +46,17 @@ if __name__ == "__main__":
 	X = run_ica(X, hparams)
 	
 	labels, centers = gmm(X, hparams)
-	scatter3d(X, colors=labels)
-	plt.hist(labels, bins=hparams.n_clusters, normed=True)
-	plt.xlabel('Label number')
-	plt.ylabel('Proportion of points belonging to label')
-	plt.show()
+	# scatter3d(X, colors=labels)
+
+	labels = np.array(get_char(labels))
+
+	result = list()
+	for i, l in zip(data, labels):
+		r = [str(k) for k in i]
+		result.append((r, l))
+
+	with open(os.path.join(dst_dir, 'results.csv'), 'w') as f:
+		for line in result:
+			f.write(str(line) + '\n')
+
+
