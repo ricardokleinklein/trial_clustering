@@ -19,13 +19,14 @@ This repository is but a proof-of-concept for some clustering ideas with enphasi
 ## Steps followed
 
 There are five main phases followed for this project. Rather than actually meaningful results, which would be hard to get due to the limited domain expertise available, the pipeline will be more process-oriented, i.e., the steps will be those that would normally try at a first attempt to any data mining challenge. Thus, those phases are: 
-* Loading and cleansing of the data
-* General features/properties of data
-* Preprocessing of the data - Dimensionality reduction
-* Clustering
-* Analysis of results
 
-### Load and clean data
+1. Loading and cleansing of the data
+2. General features/properties of data
+3. Preprocessing of the data - Dimensionality reduction
+4. Clustering
+5. Analysis of results
+
+### 1. Load and clean data
 
 Packages used to load data and convert them into an easy dealt-with array are Pandas and Numpy. 
 Simple process, it checks whether the dataset exists, if it contains any missing values and whether or not there are duplicate samples (two rows with the exact same attribute values).
@@ -37,7 +38,7 @@ The outcome of this step is an array of $100000 \times 15$ elements.
 
 For these checkings I have relied on Pandas' implemented routines as trustworthy.
 
-### Preprocessing
+### 2. Preprocessing
 
 In order to better understand the data, and how the different attributes can be related between themselves, I run a series of experiments that try to check what's the distribution of each attribute.
 - Presence of outliers: No outliers found in any sample. The method used is the interquartile method, considering the 25% and 75% of the data. Thus, all the sample shall be considered.
@@ -51,6 +52,24 @@ In order to better understand the data, and how the different attributes can be 
 ![distribution table of attributes](/images/distribution_table.png)
 - All the parameters present something not far from Gaussian distributions, although some of them are extremely skewed. There's an interesting peak on *Parameter9*.
 - Looking at the correlation table, we can say that because most of the values in *Parameter10* and *Parameter14* are close to each other, and these attributes are not strongly correlated to any attribute, I shall not take them into consideration in further processing, because at first sight it doesn't look like they'll provide much information to any clustering algorithm.
+
+### 3. Feature extraction
+
+The next logical step is to try to find a feature representation that allows us to gain a deeper understanding of the underlying information hidden in the data.
+
+To that aim, we perform two different algorithms over data: PCA analysis and ICA analysis, both in 2D and 3D.
+- *PCA* allow us to identify those axis along which data retain a greater variance of the original multi-dimensional data. *ICA* performs a somehow opposite analysis. This way we can check whether there's any attribute/projection axis by which data are linearly separable.
+![PCA in 2d and 3d](/images/pca.png)
+
+- A shape that resembles that of a heart appears in both the 2 and 3 main components. That indicates a continuity in the data, so most likely no independent clustering will be possible, at least in visualizable spaces.
+
+- *ICA* yields a dimensionality space in which particularly dominant attributes would dominate. It is applied here with some caution, cause it's not an algorithm suited for gaussian distributed data, but the attributes, with some exceptions, does not appear to be highly correlated, so in order to get some insight I run it nonetheless.
+![ICA in 2d and 3d](/images/ica.png)
+
+- A hearted-shape distribution is observed. It is a bit different from the one found with PCA, though, and poses some interesting features: it can be seen a couple of tails, a bulk, and some minor bulks. 
+- Therefore, we shall use the features in 3D extracted from the ICA analysis.
+
+
 
 
 
