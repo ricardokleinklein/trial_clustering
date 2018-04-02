@@ -44,6 +44,12 @@ In order to better understand the data, and how the different attributes can be 
 - Given that the attributes have no outliers, but their relative sizes are quite different in orders of magnitud, I proceed to normalize all attributes' values to have mean 0 and standard deviation 1 so any learning algorithm will not be skewed because of this.
 - I proceed to obtain a correlation table for every pair of attributes. The index used to establish the correlation between attributes is the *Pearson coefficient*.
 ![correlation table of attributes](correlation_table.png)
+- The table shows some very strongly correlated pairs of attributes: *Par1-2-3, Par3-4, Par3-5, Par4-5.*
+- It also shows that there are a couple of attributes apparently unrelated to any other: *Parameter10* and *Parameter11*.
+- **It would be interesting to explore these relationships in further detail**, but due to limitations in time we leave it as future work.
+- I plot the data distribution for every attribute, after normalization. This step allows to see possible skewed data distributions. Particular features in these distributions will give us clues on how to explore the dataset.
+![distribution table of attributes](distribution_table.png)
+- All the parameters present Gaussian distributions, although some of them are extremely skewed. There's an interesting peak on *Parameter9*.
 
 
 
