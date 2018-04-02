@@ -67,7 +67,17 @@ To that aim, we perform two different algorithms over data: PCA analysis and ICA
 ![ICA in 2d and 3d](/images/ica.png)
 
 - A hearted-shape distribution is observed. It is a bit different from the one found with PCA, though, and poses some interesting features: it can be seen a couple of tails, a bulk, and some minor bulks. 
-- Therefore, we shall use the features in 3D extracted from the ICA analysis.
+- Therefore, we shall use the features in 3D extracted from the ICA analysis for clustering.
+
+### 4. Clustering
+
+The final task is to cluster the data available. Because we have no defined label, we perform unsupervised clustering, leaving to the algorithms the task of finding the right grouping centers and criteria.
+
+Because of the surveying aim of this project, I am running two simple but powerful unsupervised clustering algorithms: K-Means and a Gaussian Mixture Model.
+
+- K-Means: Based on euclidean distance between points of the dataset, it is expected that it'll distribute the data into clusters depending on the position of the points in the 3D space obtained after the ICA analysis. For instance, for 8 clusters:
+![KMeans with 8 clusters](/images/kmeans8.png)
+- This clustering doesn't seem to provide any relevant clustering, though it identifies some regions like the main bulk and the tails in different clusters, with just 8 labels.
 
 
 
