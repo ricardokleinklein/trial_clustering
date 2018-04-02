@@ -114,17 +114,17 @@ def run_pca(X, hparams):
 	return pca.components_, proj_X
 
 
-def scatter2d(X):
+def scatter2d(X, colors=None):
 	assert X.shape[1] == 2
-	plt.scatter(X[:,0], X[:, 1])
+	plt.scatter(X[:,0], X[:, 1], c=colors)
 	plt.show()
 
 
-def scatter3d(X, pca=None):
+def scatter3d(X, pca=None, colors=None):
 	assert X.shape[1] == 3
 	fig = plt.figure()
 	ax = Axes3D(fig)
-	ax.scatter(X[:,0], X[:,1], X[:,2])
+	ax.scatter(X[:,0], X[:,1], X[:,2], c=colors)
 	if pca is not None:
 		pass
 	plt.show()

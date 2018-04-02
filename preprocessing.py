@@ -10,11 +10,13 @@ from scipy.stats import pearsonr
 from sklearn import preprocessing as P
 
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 def _load_data_as_frame(filepath):
 	data = pd.read_csv(filepath)
 	if _is_missing(data):
 		print('Missing data')
+	data = _drop_duplicates(data)
 	return data
 
 
@@ -25,6 +27,10 @@ def load_data(filepath):
 
 def _is_missing(data):
 	return data.isnull().values.any()
+
+
+def _drop_duplicates(data):
+	return data.drop_duplicates()
 
 
 def _get_mean_var_atts(data):
@@ -43,7 +49,7 @@ def get_dist(data):
 
 
 def _outliers_iqr(ys):
-  quartile_1, quartile_3 = np.percentile(ys, [10, 90])
+  quartile_1, quartile_3 = np.percentile(ys, [25, 75])
   iqr = quartile_3 - quartile_1
   lower_bound = quartile_1 - (iqr * 1.5)
   upper_bound = quartile_3 + (iqr * 1.5)

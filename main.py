@@ -40,3 +40,14 @@ if __name__ == "__main__":
 
 	data = load_data(data_dir)
 	X = normalize(data)
+	indices = [0,1,2,3,4,5,6,7,8,10,11,12,14]
+	X = np.take(X, indices, axis=1)
+
+	X = run_ica(X, hparams)
+	
+	labels, centers = gmm(X, hparams)
+	scatter3d(X, colors=labels)
+	plt.hist(labels, bins=hparams.n_clusters, normed=True)
+	plt.xlabel('Label number')
+	plt.ylabel('Proportion of points belonging to label')
+	plt.show()

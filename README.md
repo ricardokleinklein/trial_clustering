@@ -75,9 +75,10 @@ The final task is to cluster the data available. Because we have no defined labe
 
 Because of the surveying aim of this project, I am running two simple but powerful unsupervised clustering algorithms: K-Means and a Gaussian Mixture Model.
 
-- K-Means: Based on euclidean distance between points of the dataset, it is expected that it'll distribute the data into clusters depending on the position of the points in the 3D space obtained after the ICA analysis. For instance, for 8 clusters:
-![KMeans with 8 clusters](/images/kmeans8.png)
+- K-Means: Based on euclidean distance between points of the dataset, it is expected that it'll distribute the data into clusters depending on the position of the points in the 3D space obtained after the ICA analysis.
 - This clustering doesn't seem to provide any relevant clustering, though it identifies some regions like the main bulk and the tails in different clusters, with just 8 labels.
+- GMM: based on probabilistic distributions, assuming the data follow a gaussian distribution, which I have assumed is accurate enough.
+- The clustering is similar to that obtained with K-Means. However, GMM tend to assign the same label to a larger amount of points. This yields a distribution in which some labels group the most of the samples in the dataset, leaving some other groups with almost no elements, or at least far fewer elements.
 
 
 
