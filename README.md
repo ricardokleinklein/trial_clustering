@@ -47,9 +47,10 @@ In order to better understand the data, and how the different attributes can be 
 - The table shows some very strongly correlated pairs of attributes: *Par1-2-3, Par3-4, Par3-5, Par4-5.*
 - It also shows that there are a couple of attributes apparently unrelated to any other: *Parameter10* and *Parameter11*.
 - **It would be interesting to explore these relationships in further detail**, but due to limitations in time we leave it as future work.
-- I plot the data distribution for every attribute, after normalization. This step allows to see possible skewed data distributions. Particular features in these distributions will give us clues on how to explore the dataset.
+- I plot the data distribution for every attribute, prior to normalization. This step allows to see possible skewed data distributions. Particular features in these distributions will give us clues on how to explore the dataset.
 ![distribution table of attributes](/images/distribution_table.png)
-- All the parameters present Gaussian distributions, although some of them are extremely skewed. There's an interesting peak on *Parameter9*.
+- All the parameters present something not far from Gaussian distributions, although some of them are extremely skewed. There's an interesting peak on *Parameter9*.
+- Looking at the correlation table, we can say that because most of the values in *Parameter10* and *Parameter14* are close to each other, and these attributes are not strongly correlated to any attribute, I shall not take them into consideration in further processing, because at first sight it doesn't look like they'll provide much information to any clustering algorithm.
 
 
 
